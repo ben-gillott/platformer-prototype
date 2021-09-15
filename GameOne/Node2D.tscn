@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://tilesheet_complete.png" type="Texture" id=1]
 [ext_resource path="res://enemyWalking_2.png" type="Texture" id=2]
 [ext_resource path="res://KinematicBody2D.gd" type="Script" id=3]
+[ext_resource path="res://CoinManager.gd" type="Script" id=4]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 46.095, 47, 17.095, 47, 18.095, 18, 47.095, 19 )
@@ -104,23 +105,69 @@ points = PoolVector2Array( 0, 0, 64, 0, 64, 64, 0, 64 )
 
 [sub_resource type="CapsuleShape2D" id=6]
 
+[sub_resource type="GDScript" id=9]
+script/source = "extends Area2D
+
+
+# Declare member variables here. Examples:
+# var a = 2
+# var b = \"text\"
+
+
+# Called when thenode enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+#func _process(delta):
+#	pass
+"
+
+[sub_resource type="CapsuleShape2D" id=8]
+
+[sub_resource type="CircleShape2D" id=7]
+
 [node name="Node2D" type="Node2D"]
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource( 5 )
 format = 1
-tile_data = PoolIntArray( 131073, 3, 2, 131074, 3, 2, 131075, 3, 2, 131076, 3, 2, 131077, 3, 2, 196613, 3, 0, 262150, 3, 0, 262151, 3, 2, 262152, 3, 2, 262153, 3, 2, 262154, 3, 2, 262156, 3, 2, 262157, 3, 2, 262158, 3, 2, 327685, 4, 0, 458754, 5, 0, 458755, 6, 0, 458756, 6, 0, 458757, 6, 0, 458758, 6, 0, 458759, 6, 0, 458760, 7, 0, 458761, 7, 0, 458764, 1, 0, 458765, 1, 0, 458766, 1, 0, 524290, 1, 0, 524291, 1, 0, 524292, 1, 0, 524293, 1, 0, 524294, 1, 0, 524295, 1, 0, 524296, 1, 0, 524297, 1, 0, 524298, 1, 0, 524299, 1, 0, 524300, 1, 0, 524301, 1, 0, 524302, 1, 0, 589826, 1, 0, 589827, 1, 0, 589828, 1, 0, 589829, 1, 0, 589830, 1, 0, 589831, 1, 0, 589832, 1, 0, 589833, 1, 0, 589834, 1, 0, 589835, 1, 0, 589836, 1, 0, 589837, 1, 0, 589838, 1, 0, 655372, 3, 0, 720908, 3, 0, 720909, 3, 0 )
+tile_data = PoolIntArray( 131073, 3, 2, 131074, 3, 2, 131075, 3, 2, 131076, 3, 2, 131077, 3, 2, 196613, 3, 0, 262150, 3, 0, 262151, 3, 2, 262152, 3, 2, 262153, 3, 2, 262154, 3, 2, 262156, 3, 2, 262157, 3, 2, 262158, 3, 2, 458754, 5, 0, 458755, 6, 0, 458756, 6, 0, 458757, 6, 0, 458758, 6, 0, 458759, 6, 0, 458760, 6, 0, 458761, 7, 0, 458764, 1, 0, 458765, 1, 0, 458766, 1, 0, 524290, 1, 0, 524291, 1, 0, 524292, 1, 0, 524293, 1, 0, 524294, 1, 0, 524295, 1, 0, 524296, 1, 0, 524297, 1, 0, 524298, 1, 0, 524299, 1, 0, 524300, 1, 0, 524301, 1, 0, 524302, 1, 0, 589826, 1, 0, 589827, 1, 0, 589828, 1, 0, 589829, 1, 0, 589830, 1, 0, 589831, 1, 0, 589832, 1, 0, 589833, 1, 0, 589834, 1, 0, 589835, 1, 0, 589836, 1, 0, 589837, 1, 0, 589838, 1, 0, 655372, 3, 0, 720908, 3, 0, 720909, 3, 0 )
 
 [node name="Player" type="KinematicBody2D" parent="."]
+position = Vector2( 534, 413 )
 script = ExtResource( 3 )
 jump_speed = -600
 gravity = 2000
 friction = 0.3
 
 [node name="Sprite" type="Sprite" parent="Player"]
-position = Vector2( 435.231, 331.09 )
 texture = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
-position = Vector2( 435.231, 331.09 )
 shape = SubResource( 6 )
+
+[node name="Area2D" type="Area2D" parent="Player"]
+visible = false
+script = SubResource( 9 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/Area2D"]
+shape = SubResource( 8 )
+
+[node name="CoinManager" type="Node2D" parent="."]
+script = ExtResource( 4 )
+
+[node name="Coin" type="Area2D" parent="CoinManager"]
+position = Vector2( 375.525, 375.525 )
+
+[node name="Sprite" type="Sprite" parent="CoinManager/Coin"]
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 1043.5, 85.1085, 24.943, 21.6342 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CoinManager/Coin"]
+shape = SubResource( 7 )
+
+[connection signal="area_entered" from="Player/Area2D" to="CoinManager" method="_on_Player_area_entered"]
+[connection signal="body_entered" from="CoinManager/Coin" to="CoinManager" method="_on_Coin_body_entered"]
