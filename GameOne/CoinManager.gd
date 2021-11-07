@@ -5,7 +5,10 @@ var score = 0
 
 var coin = preload("res://Coin.tscn")
 
-
+func _updateScoreUI(var newScore):
+	var ScoreUINode = get_parent().get_node("ScoreCounter/UI/Control/RichTextLabel")
+	ScoreUINode.text = str(newScore)
+	
 func _spawnCoin():
 	#var coinClone = Area2D.new()
 	#add_child(coinClone)
@@ -20,18 +23,18 @@ func _ready():
 	pass
 
 var timer = 0; 
-var spawnRate = 1;
+var spawnRate = 2;
 
 func _process(delta):
 	timer += delta
 	if timer > spawnRate:
 		timer = 0
-		print("time hit")
+		_spawnCoin()
 
 #When the player hits a coin
 func _on_Player_area_entered(area):
-	#if area.name == "Coin":
-		score += 1
-		print(score)
-		area.free()
-		#_spawnCoin()
+	score += 1
+	print(score)
+	_updateScoreUI(score)
+	area.queue_free()
+
