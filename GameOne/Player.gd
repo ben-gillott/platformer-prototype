@@ -30,6 +30,10 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("jump"):
 		if is_on_floor():
 			velocity.y = jump_speed
+	if position.y > 600:
+		var Manager = get_parent().get_node("CoinManager")
+		Manager._endOfTheGame()
+		queue_free()
 
 
 

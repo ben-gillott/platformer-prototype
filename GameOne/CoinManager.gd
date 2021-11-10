@@ -6,15 +6,12 @@ var score = 0
 var coin = preload("res://Coin.tscn")
 
 func _updateScoreUI(var newScore):
-	var ScoreUINode = get_parent().get_node("ScoreCounter/UI/Control/RichTextLabel")
+	var ScoreUINode = get_parent().get_node("ScoreCounter/UI/Control/Score")
 	ScoreUINode.text = str(newScore)
 	
 func _spawnCoin():
-	#var coinClone = Area2D.new()
-	#add_child(coinClone)
 	var coin_instance = coin.instance()
-	#get_tree().get_root().get_node("Game").add_child(coin_instance)
-	coin_instance.position = Vector2(510.0, 10.0)
+	coin_instance.position = Vector2(545.0, 10.0)
 	call_deferred("add_child", coin_instance)
 
 # Called when the node enters the scene tree for the first time.
@@ -38,3 +35,17 @@ func _on_Player_area_entered(area):
 	_updateScoreUI(score)
 	area.queue_free()
 
+
+func _endOfTheGame():
+	print("fallen")
+	spawnRate = 10000
+	var ScoreUINode = get_parent().get_node("ScoreCounter/UI/Control/Score")
+	var GameOverUINode = get_parent().get_node("ScoreCounter/UI/Control/GameOver")
+	var GameOverScoreUINode = get_parent().get_node("ScoreCounter/UI/Control/GameOverScore")
+	ScoreUINode.hide()
+	GameOverUINode.show()
+	GameOverScoreUINode.text = str(score)
+	GameOverScoreUINode.show()
+	
+	
+	
