@@ -3,7 +3,16 @@ extends Node2D
 #onready var coin = $Coin
 var score = 0
 
+onready var restartButton : Button = get_parent().get_node("ScoreCounter/UI/Control/RestartButton")
+
 var coin = preload("res://Coin.tscn")
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	restartButton.connect("button_down", self, "restartScene")
+	pass
+	
 
 func _updateScoreUI(var newScore):
 	var ScoreUINode = get_parent().get_node("ScoreCounter/UI/Control/Score")
@@ -14,10 +23,7 @@ func _spawnCoin():
 	coin_instance.position = Vector2(545.0, 10.0)
 	call_deferred("add_child", coin_instance)
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	_spawnCoin()
-	pass
+
 
 var timer = 0; 
 var spawnRate = 2;
@@ -38,7 +44,7 @@ func _on_Player_area_entered(area):
 
 func _endOfTheGame():
 	print("fallen")
-	spawnRate = 10000
+	spawnRate = 10000 #stop coins falling
 	var ScoreUINode = get_parent().get_node("ScoreCounter/UI/Control/Score")
 	var GameOverUINode = get_parent().get_node("ScoreCounter/UI/Control/GameOver")
 	var GameOverScoreUINode = get_parent().get_node("ScoreCounter/UI/Control/GameOverScore")
@@ -46,6 +52,9 @@ func _endOfTheGame():
 	GameOverUINode.show()
 	GameOverScoreUINode.text = str(score)
 	GameOverScoreUINode.show()
+	restartButton.show()
 	
-	
+func restartScene():
+	get_tree().reload_current_scene()
+
 	

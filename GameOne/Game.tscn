@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://CoinManager.gd" type="Script" id=1]
 [ext_resource path="res://tilesheet_complete.png" type="Texture" id=2]
@@ -130,6 +130,14 @@ func _ready():
 size = 60
 outline_size = 3
 
+[sub_resource type="StyleBoxFlat" id=10]
+bg_color = Color( 0.603922, 0.596078, 0.596078, 1 )
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color( 0.145098, 0.694118, 0.129412, 1 )
+
 [node name="Game" type="Node2D"]
 
 [node name="TileMap" type="TileMap" parent="."]
@@ -184,10 +192,11 @@ __meta__ = {
 
 [node name="GameOverScore" type="RichTextLabel" parent="ScoreCounter/UI/Control"]
 visible = false
-margin_left = 532.578
-margin_top = 225.256
-margin_right = 598.578
-margin_bottom = 280.256
+anchor_right = 0.879
+margin_left = 543.323
+margin_top = 226.512
+margin_right = 614.901
+margin_bottom = 281.512
 text = "0
 "
 __meta__ = {
@@ -196,14 +205,26 @@ __meta__ = {
 
 [node name="GameOver" type="RichTextLabel" parent="ScoreCounter/UI/Control"]
 visible = false
-margin_left = 463.0
-margin_top = 195.0
-margin_right = 588.0
-margin_bottom = 279.0
+margin_left = 479.323
+margin_top = 196.256
+margin_right = 604.323
+margin_bottom = 280.256
 custom_fonts/mono_font = SubResource( 9 )
 text = "Game Over
 
 Score:"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RestartButton" type="Button" parent="ScoreCounter/UI/Control"]
+visible = false
+margin_left = 481.933
+margin_top = 273.812
+margin_right = 555.933
+margin_bottom = 313.812
+custom_styles/hover = SubResource( 10 )
+text = "Restart"
 __meta__ = {
 "_edit_use_anchors_": false
 }
