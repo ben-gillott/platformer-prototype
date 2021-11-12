@@ -1,9 +1,12 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://CoinManager.gd" type="Script" id=1]
 [ext_resource path="res://tilesheet_complete.png" type="Texture" id=2]
+[ext_resource path="res://mountain-trials.ogg" type="AudioStream" id=3]
 [ext_resource path="res://Player.gd" type="Script" id=4]
 [ext_resource path="res://enemyWalking_2.png" type="Texture" id=5]
+[ext_resource path="res://object.wav" type="AudioStream" id=6]
+[ext_resource path="res://death.wav" type="AudioStream" id=7]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 46.095, 47, 17.095, 47, 18.095, 18, 47.095, 19 )
@@ -167,6 +170,20 @@ shape = SubResource( 8 )
 
 [node name="CoinManager" type="Node2D" parent="."]
 script = ExtResource( 1 )
+
+[node name="Music" type="AudioStreamPlayer" parent="CoinManager"]
+pause_mode = 2
+stream = ExtResource( 3 )
+volume_db = -6.0
+autoplay = true
+
+[node name="CoinSFX" type="AudioStreamPlayer" parent="CoinManager"]
+stream = ExtResource( 6 )
+volume_db = 5.0
+
+[node name="DeathSFX" type="AudioStreamPlayer" parent="CoinManager"]
+stream = ExtResource( 7 )
+volume_db = 10.0
 
 [node name="ScoreCounter" type="Node2D" parent="."]
 

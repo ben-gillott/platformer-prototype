@@ -39,12 +39,15 @@ func _on_Player_area_entered(area):
 	score += 1
 	print(score)
 	_updateScoreUI(score)
+	$CoinSFX.play()
 	area.queue_free()
 
 
 func _endOfTheGame():
 	print("fallen")
 	spawnRate = 10000 #stop coins falling
+	$DeathSFX.play()
+	
 	var ScoreUINode = get_parent().get_node("ScoreCounter/UI/Control/Score")
 	var GameOverUINode = get_parent().get_node("ScoreCounter/UI/Control/GameOver")
 	var GameOverScoreUINode = get_parent().get_node("ScoreCounter/UI/Control/GameOverScore")
