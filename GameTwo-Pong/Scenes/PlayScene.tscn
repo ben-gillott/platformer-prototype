@@ -1,0 +1,7 @@
+[gd_scene format=2]
+
+[node name="PlayScene" type="Node2D"]
+
+[node name="Player1" type="Node2D" parent="."]
+
+[node name="Paddle" type="Node2D" parent="Player1"]
