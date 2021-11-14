@@ -12,5 +12,14 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+func _process(delta):
+	get_input()
+	pass
+
+func get_input():
+	if Input.is_action_pressed("ui_up"):
+		$Paddle.moveUp()
+	elif Input.is_action_pressed("ui_down"):
+		$Paddle.moveDown()
+	else:
+		$Paddle.stopMoving()
