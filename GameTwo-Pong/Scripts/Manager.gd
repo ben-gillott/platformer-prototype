@@ -26,8 +26,10 @@ func _startRound():
 
 func _p1Scored():
 	p1Score += 1
+	$Control/P1ScoreLabel.text = str(p1Score)
 	_startRound()
 	
 func _p2Scored():
 	p2Score += 1
+	$Control/P2ScoreLabel.text = str(p2Score)
 	_startRound()
