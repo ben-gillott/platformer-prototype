@@ -9,8 +9,15 @@ export (float, 0, 1.0) var acceleration = 0.50
 var dir = 0
 var velocity = Vector2.ZERO
 
+onready var paddleXPos = position.x
+
 func _physics_process(delta):
+	#Lock along x axis
+	velocity.x = 0
+	position.x = paddleXPos
+	
 	velocity = move_and_slide(velocity, Vector2.UP)
+	
 	if dir != 0:
 		velocity.y = lerp(velocity.y, dir * speed, acceleration)
 	else:

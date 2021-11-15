@@ -6,7 +6,6 @@
 [ext_resource path="res://Scenes/Ball.gd" type="Script" id=4]
 
 [sub_resource type="CircleShape2D" id=1]
-radius = 20.0
 
 [node name="PlayScene" type="Node2D"]
 
@@ -31,4 +30,5 @@ scale = Vector2( 40, 40 )
 texture = ExtResource( 3 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ball"]
+scale = Vector2( 2, 2 )
 shape = SubResource( 1 )
