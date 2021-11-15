@@ -2,7 +2,8 @@ extends KinematicBody2D
 
 
 var velocity = Vector2.ZERO
-var speed = 200
+var speed = 400
+var randomness = .1
 
 func _ready():
 	velocity.x = -speed
@@ -13,9 +14,6 @@ func _physics_process(delta):
 	
 	if col != null: 
 		#Bounce
-		#bounce the prior direction of the ball over the surface normal
-		direction = direction.bounce(col.normal)
-		print(direction)
-	
+		var randomDiff = Vector2(0, rand_range(randomness, -randomness))
+		direction = direction.bounce(col.normal) + randomDiff
 		velocity = direction * speed
-		print(velocity)
