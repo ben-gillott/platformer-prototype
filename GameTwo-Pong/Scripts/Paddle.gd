@@ -3,7 +3,7 @@ extends KinematicBody2D
 
 #member variables
 
-export (int) var speed = 600
+export (int) var speed = 350
 export (float, 0, 1.0) var friction = 0.2
 export (float, 0, 1.0) var acceleration = 0.50
 var dir = 0

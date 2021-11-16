@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Scenes/Paddle.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scripts/Player1.gd" type="Script" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://Scenes/Wall.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scripts/Manager.gd" type="Script" id=5]
 [ext_resource path="res://Art/Retroville NC.ttf" type="DynamicFontData" id=6]
+[ext_resource path="res://Scripts/AIPaddle.gd" type="Script" id=7]
 
 [sub_resource type="DynamicFont" id=1]
 size = 100
@@ -19,12 +20,14 @@ position = Vector2( 995.112, 283.978 )
 script = ExtResource( 2 )
 
 [node name="Paddle" parent="Player1" instance=ExtResource( 1 )]
+scale = Vector2( 10, 50 )
 
 [node name="Player2" type="Node2D" parent="."]
-position = Vector2( 19.0815, 291.946 )
-scale = Vector2( 1, 10 )
+position = Vector2( 24.6398, 286.388 )
+script = ExtResource( 7 )
 
 [node name="Paddle" parent="Player2" instance=ExtResource( 1 )]
+scale = Vector2( 10, 40 )
 
 [node name="Ball" parent="." instance=ExtResource( 3 )]
 position = Vector2( 514.511, 263.447 )
