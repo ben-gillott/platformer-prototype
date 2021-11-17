@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Scenes/Paddle.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scripts/Player1.gd" type="Script" id=2]
@@ -7,6 +7,9 @@
 [ext_resource path="res://Scripts/Manager.gd" type="Script" id=5]
 [ext_resource path="res://Art/Retroville NC.ttf" type="DynamicFontData" id=6]
 [ext_resource path="res://Scripts/AIPaddle.gd" type="Script" id=7]
+[ext_resource path="res://Sound/Kevin MacLeod Bit Bit Loop.mp3" type="AudioStream" id=8]
+[ext_resource path="res://Sound/Hit.wav" type="AudioStream" id=9]
+[ext_resource path="res://Sound/Score.wav" type="AudioStream" id=10]
 
 [sub_resource type="DynamicFont" id=1]
 size = 100
@@ -72,3 +75,18 @@ valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Music" type="Node2D" parent="."]
+
+[node name="Music" type="AudioStreamPlayer" parent="Music"]
+stream = ExtResource( 8 )
+volume_db = -16.0
+autoplay = true
+
+[node name="Hit" type="AudioStreamPlayer" parent="Music"]
+stream = ExtResource( 9 )
+volume_db = -10.0
+
+[node name="Score" type="AudioStreamPlayer" parent="Music"]
+stream = ExtResource( 10 )
+volume_db = -1.0

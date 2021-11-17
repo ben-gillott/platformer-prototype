@@ -13,6 +13,9 @@ func _physics_process(delta):
 	var col = move_and_collide(velocity * delta)
 	
 	if col != null: 
+		#playsound
+		get_parent().get_node("Music").get_node("Hit").play()
+		
 		#Bounce
 		var randomDiff = Vector2(0, rand_range(randomness, -randomness))
 		direction = direction.bounce(col.normal) + randomDiff
@@ -21,6 +24,11 @@ func _physics_process(delta):
 	#Check for goal
 	var screenSize = get_viewport_rect().size
 	if position.x > screenSize.x:
+		_scoreFX()
 		get_parent()._p2Scored()
 	elif position.x < 0:
+		_scoreFX()
 		get_parent()._p1Scored()
+
+func _scoreFX():
+	get_parent().get_node("Music").get_node("Score").play()
