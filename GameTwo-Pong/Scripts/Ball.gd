@@ -14,7 +14,7 @@ func _physics_process(delta):
 	
 	if col != null: 
 		#playsound
-		get_parent().get_node("Music").get_node("Hit").play()
+		_hitFX()
 		
 		#Bounce
 		var randomDiff = Vector2(0, rand_range(randomness, -randomness))
@@ -30,5 +30,9 @@ func _physics_process(delta):
 		_scoreFX()
 		get_parent()._p1Scored()
 
+func _hitFX():
+	get_parent().get_node("Music").get_node("Hit").play()
+	$HitParticles.emitting = true
+	
 func _scoreFX():
 	get_parent().get_node("Music").get_node("Score").play()
