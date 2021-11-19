@@ -36,3 +36,4 @@ func _hitFX():
 	
 func _scoreFX():
 	get_parent().get_node("Music").get_node("Score").play()
+	get_parent().get_node("Camera").goalShake()

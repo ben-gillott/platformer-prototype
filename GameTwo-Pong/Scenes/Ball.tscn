@@ -6,10 +6,10 @@
 [sub_resource type="CircleShape2D" id=1]
 
 [sub_resource type="Curve" id=2]
-_data = [ Vector2( 0.0174419, 0.979818 ), 0.0, -0.142149, 0, 0, Vector2( 1, 0 ), -0.86, 0.0, 0, 0 ]
+_data = [ Vector2( 0.0174419, 0.979818 ), 0.0, 0.515373, 0, 0, Vector2( 0.529412, 0.4315 ), -0.827603, -0.827603, 0, 0, Vector2( 1, 0 ), 0.198075, 0.0, 0, 0 ]
 
 [sub_resource type="Gradient" id=3]
-colors = PoolColorArray( 1, 1, 1, 0.643137, 1, 1, 1, 0 )
+colors = PoolColorArray( 1, 1, 1, 0.521569, 1, 1, 1, 0 )
 
 [sub_resource type="Gradient" id=4]
 colors = PoolColorArray( 1, 1, 1, 0.835294, 1, 1, 1, 0.298039 )
@@ -29,16 +29,15 @@ shape = SubResource( 1 )
 
 [node name="BallTrail" type="CPUParticles2D" parent="."]
 amount = 10
-lifetime = 0.7
+lifetime = 0.6
 local_coords = false
 gravity = Vector2( 0, 0 )
 initial_velocity = 2.0
-scale_amount = 40.75
+scale_amount = 30.0
 scale_amount_curve = SubResource( 2 )
 color_ramp = SubResource( 3 )
 
 [node name="HitParticles" type="CPUParticles2D" parent="."]
-visible = false
 emitting = false
 amount = 20
 lifetime = 0.5
