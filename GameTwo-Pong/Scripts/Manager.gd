@@ -12,17 +12,21 @@ func _ready():
 	_startRound()
 
 func _startRound():
-	#Todo update score UI
-	print("P1:" + str(p1Score) + "-P2:" + str(p2Score))
-	
 	#Reset ball and paddles
 	$Ball.position = ballStartPos
 	$Player1.get_child(0).position = paddle1StartPos
 	$Player2.get_child(0).position = paddle2StartPos
 	
-	#TODO: Apply random force to ball
-	#TODO: wait a second before sending the ball off
-	$Ball.serve(1)
+
+	#serve in random direction	
+	
+	var rng = RandomNumberGenerator.new()
+	rng.randomize()
+	var randDir = rng.randi_range(1,2)
+	if(randDir == 2): #Jeez this is painful to look at
+		randDir = -1
+	
+	$Ball.serve(randDir)
 
 func _p1Scored():
 	p1Score += 1

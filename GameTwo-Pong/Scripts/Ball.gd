@@ -2,11 +2,23 @@ extends KinematicBody2D
 
 
 var velocity = Vector2.ZERO
-var speed = 400
-var randomness = .2
+var baseSpeed = 400
+var tempSpeed = 400
+var speedIncrease = 70
 
-func serve(dir):
-	velocity.x = dir * speed
+var randomness = .2
+var serveRandomness = .4
+var waitTime = .5
+
+func serve(xDir):
+	tempSpeed = baseSpeed
+	velocity = Vector2.ZERO
+	
+	yield(get_tree().create_timer(waitTime), "timeout")
+	
+	var yDir = rand_range(serveRandomness, -serveRandomness)
+	var direction = Vector2(xDir, yDir)
+	velocity = direction * tempSpeed
 
 func _physics_process(delta):
 	var direction = velocity.normalized()
@@ -16,10 +28,11 @@ func _physics_process(delta):
 		#playsound
 		_hitFX()
 		
+		tempSpeed = tempSpeed + speedIncrease
 		#Bounce
 		var randomDiff = Vector2(0, rand_range(randomness, -randomness))
 		direction = direction.bounce(col.normal) + randomDiff
-		velocity = direction * speed
+		velocity = direction * tempSpeed
 	
 	#Check for goal
 	var screenSize = get_viewport_rect().size
