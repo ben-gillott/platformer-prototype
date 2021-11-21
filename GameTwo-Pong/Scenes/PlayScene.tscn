@@ -19,6 +19,16 @@ font_data = ExtResource( 6 )
 [node name="PlayScene" type="Node2D"]
 script = ExtResource( 5 )
 
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_left = -270.0
+margin_top = -235.0
+margin_right = 1299.0
+margin_bottom = 876.0
+color = Color( 0.227451, 0.223529, 0.223529, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="Camera" type="Camera2D" parent="."]
 anchor_mode = 0
 current = true

@@ -11,7 +11,7 @@ config_version=4
 [application]
 
 config/name="GameTwo-Pong"
-run/main_scene="res://Scenes/PlayScene.tscn"
+run/main_scene="res://Scenes/StartMenu.tscn"
 config/icon="res://icon.png"
 
 [input]
