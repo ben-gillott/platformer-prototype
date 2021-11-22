@@ -6,16 +6,25 @@ onready var paddle2StartPos = $Player2.get_child(0).position
 
 var p1Score = 0
 var p2Score = 0
-
+var maxScore = 1
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	_startRound()
 
 func _startRound():
+	
 	#Reset ball and paddles
 	$Ball.position = ballStartPos
 	$Player1.get_child(0).position = paddle1StartPos
 	$Player2.get_child(0).position = paddle2StartPos
+
+	#Check for game over
+	if (p1Score >= maxScore):
+		gameOver(true)
+		return
+	elif (p2Score >= maxScore):
+		gameOver(false)
+		return
 	
 
 	#serve in random direction	
@@ -28,6 +37,30 @@ func _startRound():
 	
 	$Ball.serve(randDir)
 
+func gameOver(won):
+	$Ball.queue_free()
+	$Player1.queue_free()
+	$Player2.queue_free()
+	
+	var button = get_node("Control/GameOverUI/StartButton")
+	button.connect("pressed", self, "restart_button_pressed")
+	button.show()
+	
+	if won:
+		var winLabel = get_node("Control/GameOverUI/Win")
+		winLabel.show()
+	else:
+		var loseLabel = get_node("Control/GameOverUI/Lose")
+		loseLabel.show()
+
+
+func restart_button_pressed():
+	print("Start Button Pressed")
+	get_tree().change_scene("res://Scenes/PlayScene.tscn")
+
+
+	
+	
 func _p1Scored():
 	p1Score += 1
 	$Control/P1ScoreLabel.text = str(p1Score)

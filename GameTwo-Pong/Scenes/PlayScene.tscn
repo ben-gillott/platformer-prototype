@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Scenes/Paddle.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scripts/Player1.gd" type="Script" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://Sound/Hit.wav" type="AudioStream" id=9]
 [ext_resource path="res://Sound/Score.wav" type="AudioStream" id=10]
 [ext_resource path="res://Scripts/CameraShake.gd" type="Script" id=11]
+[ext_resource path="res://Art/retro.tres" type="DynamicFont" id=12]
 
 [sub_resource type="DynamicFont" id=1]
 size = 100
@@ -34,6 +35,8 @@ anchor_mode = 0
 current = true
 script = ExtResource( 11 )
 
+[node name="Ball" parent="." instance=ExtResource( 3 )]
+
 [node name="Player1" type="Node2D" parent="."]
 position = Vector2( 995.112, 283.978 )
 script = ExtResource( 2 )
@@ -47,9 +50,6 @@ script = ExtResource( 7 )
 
 [node name="Paddle" parent="Player2" instance=ExtResource( 1 )]
 scale = Vector2( 10, 40 )
-
-[node name="Ball" parent="." instance=ExtResource( 3 )]
-position = Vector2( 514.511, 263.447 )
 
 [node name="WallTop" parent="." instance=ExtResource( 4 )]
 position = Vector2( 503.752, 9.86806 )
@@ -88,6 +88,53 @@ custom_fonts/font = SubResource( 1 )
 text = "0"
 align = 1
 valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GameOverUI" type="Control" parent="Control"]
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Win" type="Label" parent="Control/GameOverUI"]
+visible = false
+margin_left = 241.631
+margin_top = 71.8772
+margin_right = 781.631
+margin_bottom = 235.877
+custom_fonts/font = SubResource( 1 )
+text = "You Win!"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Lose" type="Label" parent="Control/GameOverUI"]
+visible = false
+margin_left = 241.631
+margin_top = 76.0943
+margin_right = 781.631
+margin_bottom = 240.094
+custom_fonts/font = SubResource( 1 )
+text = "You Lose"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="StartButton" type="Button" parent="Control/GameOverUI"]
+visible = false
+margin_left = 347.24
+margin_top = 384.0
+margin_right = 662.24
+margin_bottom = 448.0
+custom_fonts/font = ExtResource( 12 )
+text = "Play Again"
 __meta__ = {
 "_edit_use_anchors_": false
 }
