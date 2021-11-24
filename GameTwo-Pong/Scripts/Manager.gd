@@ -6,7 +6,8 @@ onready var paddle2StartPos = $Player2.get_child(0).position
 
 var p1Score = 0
 var p2Score = 0
-var maxScore = 1
+var maxScore = 11
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	_startRound()
@@ -36,6 +37,18 @@ func _startRound():
 		randDir = -1
 	
 	$Ball.serve(randDir)
+	
+	#Adjust difficulty
+
+func adjustDifficulty():
+	var scoreDifference = p1Score - p2Score
+	#negative, then losing, so easier
+	#.5 is a level of difficulty jump. 
+	#EXE: 3.5 default, ai leads by 4 points, becomes easy
+	#Only want to change when big gap
+	if abs(scoreDifference) >= 3:
+		$Player2.speed += scoreDifference * .1
+	
 
 func gameOver(won):
 	$Ball.queue_free()

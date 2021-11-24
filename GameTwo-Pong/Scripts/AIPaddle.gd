@@ -1,27 +1,26 @@
 extends Node2D
 
-var margin = 0
-var AISpeed = 350
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	$Paddle.speed = AISpeed
+#member variables
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	var ballPosY = get_parent().get_node("Ball").global_position.y
-	var aiPosY = $Paddle.global_position.y
+export (int) var speed = 3.5 #5 = very hard, 1 = very easy
+
+onready var paddleXPos = global_position.x
+
+func _physics_process(delta):
+	#Lock along x axis
+	position.x = paddleXPos
 	
-	#Manually lerp towards target position
-	#var newYval = lerp(aiPosY, ballPosY, AISpeed * delta)
-	#$Paddle.position.y = newYval
+	#Lerp toward ball at speed
+	var ballPosy = get_parent().get_node("Ball").global_position.y
+	position.y = lerp(position.y, ballPosy, delta * speed)
 	
-	#if(aiPosY > ballPosY + margin):
-	#	$Paddle.moveUp()
-	#elif(aiPosY < ballPosY - margin):
-	#	$Paddle.moveDown()
-	#else:
-	#	$Paddle.stopMoving()
 
+func setDifficultyEasy():
+	speed = 3
 
-
+func setDifficultyMedium():
+	speed = 3.5
+	
+func setDifficultyHard():
+	speed = 4.5
